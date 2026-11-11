@@ -10,8 +10,17 @@ export function useActiveSection(ids: readonly string[]) {
 
     const update = () => {
       frame = 0;
-      const marker = window.scrollY + Math.min(160, window.innerHeight * 0.22);
+      const lastId = ids[ids.length - 1];
+      const scrollBottom = window.scrollY + window.innerHeight;
+      const docHeight = document.documentElement.scrollHeight;
+      const nearBottom = scrollBottom >= docHeight - 4;
 
+      if (nearBottom) {
+        setActive((current) => (current === lastId ? current : lastId));
+        return;
+      }
+
+      const marker = window.scrollY + Math.min(160, window.innerHeight * 0.22);
       let next = ids[0];
       for (const id of ids) {
         const node = document.getElementById(id);
