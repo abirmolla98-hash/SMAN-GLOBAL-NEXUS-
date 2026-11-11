@@ -4,40 +4,38 @@ export function useActiveSection(ids: readonly string[]) {
   const [active, setActive] = useState(ids[0] ?? '');
 
   useEffect(() => {
-    const nodes = ids
-      .map((id) => document.getElementById(id))
-      .filter((node): node is HTMLElement => Boolean(node));
+    if (ids.length === 0) return;
 
-    if (nodes.length === 0) return;
+    let frame = 0;
 
-    const visibility = new Map<string, number>();
+    const update = () => {
+      frame = 0;
+      const marker = window.scrollY + Math.min(160, window.innerHeight * 0.22);
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          visibility.set(entry.target.id, entry.isIntersecting ? entry.intersectionRatio : 0);
-        }
+      let next = ids[0];
+      for (const id of ids) {
+        const node = document.getElementById(id);
+        if (!node) continue;
+        const top = node.getBoundingClientRect().top + window.scrollY;
+        if (top <= marker) next = id;
+      }
 
-        let next = ids[0];
-        let best = -1;
-        for (const id of ids) {
-          const score = visibility.get(id) ?? 0;
-          if (score > best) {
-            best = score;
-            next = id;
-          }
-        }
+      setActive((current) => (current === next ? current : next));
+    };
 
-        if (best > 0) setActive(next);
-      },
-      {
-        rootMargin: '-18% 0px -42% 0px',
-        threshold: [0.1, 0.2, 0.35, 0.5, 0.75],
-      },
-    );
+    const onScroll = () => {
+      if (frame) return;
+      frame = window.requestAnimationFrame(update);
+    };
 
-    nodes.forEach((node) => observer.observe(node));
-    return () => observer.disconnect();
+    update();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    return () => {
+      if (frame) window.cancelAnimationFrame(frame);
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onScroll);
+    };
   }, [ids]);
 
   return active;

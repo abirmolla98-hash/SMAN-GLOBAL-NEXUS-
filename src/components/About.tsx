@@ -36,7 +36,7 @@ export function About() {
           <div>
             <figure className="field-photo">
               <img
-                src="/portrait-field.jpg"
+                src={`${import.meta.env.BASE_URL}portrait-field.jpg`}
                 width="1024"
                 height="1024"
                 alt="Md. Mobaeid Mollah Abir standing outdoors in a grey check suit, one hand resting on his head."

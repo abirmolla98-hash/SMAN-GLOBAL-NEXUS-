@@ -49,6 +49,9 @@ export function Footer() {
         className="to-top"
         type="button"
         data-show={showTop ? 'true' : 'false'}
+        tabIndex={showTop ? 0 : -1}
+        aria-hidden={!showTop}
+        disabled={!showTop}
         aria-label="Back to top"
         onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
       >

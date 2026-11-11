@@ -46,7 +46,7 @@ export function Hero() {
           <span className="portrait-mark bl" aria-hidden="true" />
           <span className="portrait-mark br" aria-hidden="true" />
           <img
-            src="/portrait-studio.jpg"
+            src={`${import.meta.env.BASE_URL}portrait-studio.jpg`}
             width="682"
             height="1024"
             alt="Studio portrait of Md. Mobaeid Mollah Abir in a navy suit and white shirt."

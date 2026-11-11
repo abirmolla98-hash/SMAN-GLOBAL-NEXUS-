@@ -23,9 +23,9 @@ npm run preview
 
 Any static host can serve `dist/`.
 
-- **Vercel or Netlify:** set the build command to `npm run build` and the output directory to `dist`.
+- **Vercel or Netlify:** `netlify.toml` sets `npm run build` and publishes `dist/`. If a Deploy Preview fails with `plugin_state: failed_build`, open the deploy log in the Netlify dashboard; site-level build plugins are not visible from the repository alone.
 - **Cloudflare Pages:** same build command and output directory.
-- **GitHub Pages:** upload `dist`, or use an action that runs the build. If the site lives on a project subpath, set `base` in `vite.config.ts` to that path before building.
+- **GitHub Pages:** upload `dist`, or use an action that runs the build. If the site lives on a project subpath, set `base` in `vite.config.ts` to that path before building. Portrait and favicon paths use Vite’s `BASE_URL`, so they follow that setting.
 
 The contact form is a demonstration. It validates in the browser and then offers a `mailto:` link. It does not store or send messages. To receive submissions, replace that step with a form endpoint you control (for example a serverless function or a form service) and keep the same fields: name, email, subject, and message.
 
