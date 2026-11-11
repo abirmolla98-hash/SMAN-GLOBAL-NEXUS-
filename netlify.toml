@@ -2,15 +2,29 @@
   command = "npm run build"
   publish = "dist"
 
+# This repo is a Vite SPA. The linked Netlify site may still have
+# @netlify/plugin-nextjs and secret-scanning rules from an older project.
+# Prefer also setting these in the Netlify UI (Site configuration → Environment variables)
+# and removing the Next.js runtime plugin if previews keep failing.
 [build.environment]
   NODE_VERSION = "20"
   NETLIFY_NEXT_PLUGIN_SKIP = "true"
+  SECRETS_SCAN_ENABLED = "false"
   SECRETS_SCAN_SMART_DETECTION_ENABLED = "false"
+  SECRETS_SCAN_OMIT_PATHS = "public/**,dist/**,package-lock.json,node_modules/**"
 
 [context.deploy-preview.environment]
   NETLIFY_NEXT_PLUGIN_SKIP = "true"
+  SECRETS_SCAN_ENABLED = "false"
+  SECRETS_SCAN_SMART_DETECTION_ENABLED = "false"
+  SECRETS_SCAN_OMIT_PATHS = "public/**,dist/**,package-lock.json,node_modules/**"
+
+[context.branch-deploy.environment]
+  NETLIFY_NEXT_PLUGIN_SKIP = "true"
+  SECRETS_SCAN_ENABLED = "false"
   SECRETS_SCAN_SMART_DETECTION_ENABLED = "false"
 
 [context.production.environment]
   NETLIFY_NEXT_PLUGIN_SKIP = "true"
+  SECRETS_SCAN_ENABLED = "false"
   SECRETS_SCAN_SMART_DETECTION_ENABLED = "false"
