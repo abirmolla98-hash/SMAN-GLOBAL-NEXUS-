@@ -2,3 +2,7 @@
   command = "npm run build"
   publish = "dist"
 
+[build.environment]
+  NODE_VERSION = "20"
+  # This site is Vite, not Next.js. Skip a UI-installed Next plugin if present.
+  NETLIFY_NEXT_PLUGIN_SKIP = "true"
