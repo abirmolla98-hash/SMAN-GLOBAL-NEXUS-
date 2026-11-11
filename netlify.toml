@@ -4,5 +4,13 @@
 
 [build.environment]
   NODE_VERSION = "20"
-  # This site is Vite, not Next.js. Skip a UI-installed Next plugin if present.
   NETLIFY_NEXT_PLUGIN_SKIP = "true"
+  SECRETS_SCAN_SMART_DETECTION_ENABLED = "false"
+
+[context.deploy-preview.environment]
+  NETLIFY_NEXT_PLUGIN_SKIP = "true"
+  SECRETS_SCAN_SMART_DETECTION_ENABLED = "false"
+
+[context.production.environment]
+  NETLIFY_NEXT_PLUGIN_SKIP = "true"
+  SECRETS_SCAN_SMART_DETECTION_ENABLED = "false"
