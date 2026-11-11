@@ -1,20 +1,48 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://ai.google.dev/static/site-assets/images/share-ais-513315318.png" />
-</div>
+# Md. Mobaeid Mollah Abir
 
-# Run and deploy your AI Studio app
+Editorial portfolio for an AI engineer and agricultural dealership proprietor in Bangladesh. The site presents working software separately from pre-launch frameworks and named concepts.
 
-This contains everything you need to run your app locally.
+## Run locally
 
-View your app in AI Studio: https://ai.studio/apps/d87e8679-50fe-4587-88e8-7175c256d57c
+```bash
+npm install
+npm run dev
+```
 
-## Run Locally
+Open `http://localhost:3000`.
 
-**Prerequisites:**  Node.js
+```bash
+npm run lint
+npm run build
+npm run preview
+```
 
+`npm run build` writes a static site to `dist/`. No API key is required.
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+## Deploy
+
+Any static host can serve `dist/`.
+
+- **Vercel or Netlify:** set the build command to `npm run build` and the output directory to `dist`.
+- **Cloudflare Pages:** same build command and output directory.
+- **GitHub Pages:** upload `dist`, or use an action that runs the build. If the site lives on a project subpath, set `base` in `vite.config.ts` to that path before building.
+
+The contact form is a demonstration. It validates in the browser and then offers a `mailto:` link. It does not store or send messages. To receive submissions, replace that step with a form endpoint you control (for example a serverless function or a form service) and keep the same fields: name, email, subject, and message.
+
+## Photographs
+
+- `public/portrait-studio.jpg` is the hero portrait.
+- `public/portrait-field.jpg` is the environmental portrait in About.
+
+Replace either file with a new JPEG of the same name to update the site.
+
+## How the work is labeled
+
+| Status | Meaning |
+| --- | --- |
+| Working build | Public repository with application code. KrishiPOS. |
+| Partial | A dashboard exists; the marketing side is practice. |
+| Pre-launch | SmartChar, described from 2023–2025 field research. |
+| Concept | MIRA V4.1 and GIII. Named directions, without a public build. |
+
+Professional links on the page: GitHub `abirmolla98-hash`, the public LinkedIn profile, X `@abir_molla`, and the link page at `mdmobaeidmollahabir.link`. Direct email is `abir.molla98@gmail.com`. The dealership address on file is `mssamadmollah@gmail.com`.
