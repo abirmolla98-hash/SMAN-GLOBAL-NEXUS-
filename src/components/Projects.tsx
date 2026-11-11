@@ -68,7 +68,7 @@ export function Projects() {
 
 function ProjectCard({ project, delay }: { project: Project; delay: number }) {
   const [open, setOpen] = useState(false);
-  const statusClass = project.status.toLowerCase().replace(' ', '-');
+  const statusClass = project.status.toLowerCase().replaceAll(' ', '-');
 
   return (
     <article

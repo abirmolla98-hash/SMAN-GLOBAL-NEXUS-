@@ -37,7 +37,12 @@ export function Contact() {
 
   function update(field: Field, value: string) {
     setValues((current) => ({ ...current, [field]: value }));
-    setErrors((current) => ({ ...current, [field]: undefined }));
+    setErrors((current) => {
+      if (!(field in current)) return current;
+      const next = { ...current };
+      delete next[field];
+      return next;
+    });
   }
 
   function onSubmit(event: FormEvent<HTMLFormElement>) {

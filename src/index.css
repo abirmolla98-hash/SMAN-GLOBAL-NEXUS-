@@ -585,7 +585,7 @@ textarea {
 .status.concept i { background: var(--violet-soft); }
 .status.pre-launch i { background: #9a7040; }
 .status.partial i { background: #2f6f86; }
-.status.working i { background: var(--ok); }
+.status.working-build i { background: var(--ok); }
 
 .stack {
   display: flex;
